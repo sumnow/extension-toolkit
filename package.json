@@ -1,0 +1,21 @@
+{
+    "name": "extension-toolkit",
+    "version": "1.0.1",
+    "description": "webpack js toolkit hybrid",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "license": "MIT",
+    "author": "mydia@foxmail.com",
+    "repository": {},
+    "scripts": {
+        "tsc": "tsc",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "prepublish": "npm run tsc"
+    },
+    "devDependencies": {
+        "typescript": "^3.9.7"
+    },
+    "files": [
+        "dist/**/*"
+    ]
+}
