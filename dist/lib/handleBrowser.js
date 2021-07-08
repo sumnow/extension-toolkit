@@ -211,31 +211,23 @@ function getClientInfo() {
     if (/miniprogram/g.test(userAgent)) {
         obj.host = 'miniprogram';
     }
-    if (/deji/g.test(userAgent)) {
-        obj.host = 'deji';
+    if (/Win/g.test(platform)) {
+        obj.platformOs = 'windows';
     }
-    else if (win.h5CallNative) {
-        obj.host = 'deji';
+    else if (/Mac/g.test(platform)) {
+        obj.platformOs = 'mac';
+    }
+    else if (/iPhone/g.test(platform)) {
+        obj.platformOs = 'ios';
+    }
+    else if (/Linux/g.test(platform)) {
+        obj.platformOs = 'linux';
+    }
+    else if (/Android/g.test(platform)) {
+        obj.platformOs = 'android';
     }
     else {
-        if (/Win/g.test(platform)) {
-            obj.platformOs = 'windows';
-        }
-        else if (/Mac/g.test(platform)) {
-            obj.platformOs = 'mac';
-        }
-        else if (/iPhone/g.test(platform)) {
-            obj.platformOs = 'ios';
-        }
-        else if (/Linux/g.test(platform)) {
-            obj.platformOs = 'linux';
-        }
-        else if (/Android/g.test(platform)) {
-            obj.platformOs = 'android';
-        }
-        else {
-            obj.platformOs = 'unknow';
-        }
+        obj.platformOs = 'unknow';
     }
     return Object.assign({ ua: userAgent }, BrowserType(), obj);
 }
@@ -260,16 +252,26 @@ exports.isPC = isPC;
 var isMobile = function () { return /mobile/g.test(getClientInfo().platform); };
 exports.isMobile = isMobile;
 var isClient = function (str) {
-    var _str = str || handleLocalStorage_1.getLocalStorage('App_Identifier') || undefined;
-    if (/\s+/g.test(_str)) {
+    if (!(window.location && window.location.href)) {
+        console.warn('Current environment not support window.');
+        return false;
     }
     var clientDebug = getUrlQueryMap(window.location.href).isClient;
     if (isDebug() && clientDebug) {
+        console.log('Current mode is debug.');
         return JSON.parse(clientDebug);
     }
+    var _str = str || handleLocalStorage_1.getLocalStorage('App_Identifier') || undefined;
     if (_str) {
-        var reg = new RegExp(_str, 'g');
-        return reg.test(getClientInfo().ua);
+        _str = _str.toLowerCase();
+        if (/[a-z]+/g.test(_str)) {
+            var reg = new RegExp(_str, 'g');
+            return reg.test(getClientInfo().ua);
+        }
+        else {
+            console.error('Illegal input');
+            return false;
+        }
     }
     else {
         return false;

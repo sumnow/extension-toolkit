@@ -52,7 +52,7 @@ type SourceObj = {
     screenHeight: number,
     devicePixelRatio: number,
     model: string,
-    ua: string
+    ua: string,
 }
 
 
@@ -191,6 +191,10 @@ function BrowserType(): BrowserObj {
         engine = "trident"; // trident内核
         supporter = "iexplore"; // iexplore浏览器
     }
+
+
+
+
     // 内核版本
     let engineVs = "unknow";
     if (engine === "webkit") {
@@ -202,6 +206,10 @@ function BrowserType(): BrowserObj {
     } else if (engine === "trident") {
         engineVs = testVs(/trident\/[\d._]+/g);
     }
+
+
+
+
     // 载体版本
     let supporterVs = "unknow";
     if (supporter === "chrome") {
@@ -259,6 +267,8 @@ function BrowserType(): BrowserObj {
 }
 
 
+const setAppIdentifier = (str: string) => setLocalStorage('App_Identifier', str)
+
 /**
  * return system info and browser info 
  */
@@ -281,12 +291,16 @@ function getClientInfo(): SourceObj {
     const platform = window.navigator.platform
     const userAgent = navigator.userAgent.toLowerCase()
     const win = window as IWin
+
+    // 小程序开发者工具
     if (/wechatdevtools/g.test(userAgent)) {
         obj.host = 'wechatdevtools';
     }
-    if (/miniprogram/g.test(userAgent)) {
+
+    if ((/miniprogram/g).test(userAgent)) {
         obj.host = 'miniprogram'
     }
+
     // if (/deji/g.test(userAgent)) {
     //     obj.host = 'deji'
     // } else if (win.h5CallNative) {
@@ -331,6 +345,7 @@ const isWechatDevtools = () => /wechatdevtools/g.test(getClientInfo().host)
 const isPC = () => /desktop/g.test(getClientInfo().platform)
 
 const isMobile = () => /mobile/g.test(getClientInfo().platform)
+
 
 const isClient = (str?: string) => {
     if (!(window.location && window.location.href)) {
@@ -617,6 +632,7 @@ function isSupportWebP() {
 
 
 export {
+    setAppIdentifier,
     getClientInfo,
     isWechat,
     isWeibo,

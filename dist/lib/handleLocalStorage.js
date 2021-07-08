@@ -5,7 +5,7 @@ var handleData_1 = require("./handleData");
 function getLocalStorage(c) {
     var ignoreUndefinedAndNull = c;
     if (!window.localStorage) {
-        throw new Error("浏览器不支持localstorage");
+        throw new Error("Browser don't support local storage.");
     }
     else {
         var storage = window.localStorage;
@@ -26,7 +26,7 @@ function getLocalStorage(c) {
 exports.getLocalStorage = getLocalStorage;
 function deleteLocalStorage(c) {
     if (!window.localStorage) {
-        throw new Error("Browser don't support localstorage");
+        throw new Error("Browser don't support local storage");
     }
     else {
         var storage = window.localStorage;
@@ -42,7 +42,7 @@ function deleteLocalStorage(c) {
 exports.deleteLocalStorage = deleteLocalStorage;
 function setLocalStorageBase(c, v) {
     if (!window.localStorage) {
-        throw new Error("Browser don't support localstorage");
+        throw new Error("Browser don't support local storage");
     }
     else {
         var storage = window.localStorage;
@@ -66,7 +66,7 @@ function setLocalStorage(c, v) {
     }
     else {
         if (!window.localStorage) {
-            throw new Error("Browser don't support localstorage");
+            throw new Error("Browser don't support local storage");
         }
         else {
             var arr = Object.entries(c);

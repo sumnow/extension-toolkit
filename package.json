@@ -1,7 +1,7 @@
 {
-    "name": "extension-toolkit",
+    "name": "extension-toolkit-browser",
     "version": "1.0.1",
-    "description": "webpack js toolkit hybrid",
+    "description": "webpack js toolkit hybrid browser",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "license": "MIT",
