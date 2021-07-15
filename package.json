@@ -1,6 +1,6 @@
 {
     "name": "extension-toolkit-browser",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "webpack js toolkit hybrid browser",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",

@@ -15,6 +15,7 @@ import {
     deleteLocalStorage
 } from './lib/handleLocalStorage'
 import {
+    setAppIdentifier,
     getClientInfo,
     isWechat,
     isWeibo,
@@ -82,6 +83,7 @@ export {
     deleteLocalStorage,
 
     // handleBrowser
+    setAppIdentifier,
     getClientInfo,
     isWechat,
     isWeibo,
