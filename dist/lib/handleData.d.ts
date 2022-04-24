@@ -5,6 +5,7 @@ declare function getType(obj: any): string;
 declare function generateSetFromBaseTypeArr<T>(arr: T[]): T[];
 declare function generateSetFromObjectArr(arr: ObjectKV[], prop: string): ObjectKV[];
 declare function generateSetFromArr(arr: [], prop?: string): any[];
+declare function generateFillArr(val: any, num: number, array?: any[]): any[];
 declare const isTrue: (s: string | undefined) => boolean;
 declare const isEmpty: (val: any) => Boolean;
 declare const isEmptyObject: (val: object) => boolean;
@@ -15,4 +16,4 @@ declare const isHasPassInArray: (func: (e: any, i: number, array: Array<Object>)
 declare const selectPropsInObj: (obj: ObjectKV, props: string[]) => ObjectKV;
 declare const filterPropsInObj: (obj: ObjectKV, props: string[]) => ObjectKV;
 declare function traverseObj(obj1: ObjectKV, func: (o: any, i: string, _obj: ObjectKV) => {}, notDeep?: boolean): void;
-export { getType, generateSetFromBaseTypeArr, generateSetFromObjectArr, generateSetFromArr, isTrue, isEmpty, isEmptyObject, isEmptyArray, MoneyCapital, isAllPassInArray, isHasPassInArray, selectPropsInObj, filterPropsInObj, traverseObj, };
+export { getType, generateSetFromBaseTypeArr, generateSetFromObjectArr, generateSetFromArr, generateFillArr, isTrue, isEmpty, isEmptyObject, isEmptyArray, MoneyCapital, isAllPassInArray, isHasPassInArray, selectPropsInObj, filterPropsInObj, traverseObj, };

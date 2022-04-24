@@ -19,6 +19,7 @@ declare type SourceObj = {
     model: string;
     ua: string;
 };
+declare const setAppIdentifier: (str: string) => any;
 declare function getClientInfo(): SourceObj;
 declare const isWechat: () => boolean;
 declare const isWeibo: () => boolean;
@@ -40,4 +41,4 @@ declare function generateUrlByQuery(urlStr: string, obj: object): string;
 declare function replacePage(url: string, desc?: Object): void;
 declare function needRefreshPage(desc: undefined | string): void;
 declare function isSupportWebP(): boolean | undefined;
-export { getClientInfo, isWechat, isWeibo, isMiniProgram, isWechatMP, isWechatDevtools, isClient, isiOSApp, isAndroidApp, isPC, isMobile, transferNativeFun, registerNativeFun, parseUrlAsLocation, getUrlQueryMap, getUrlQueryMapInHistory, getUrlQueryMapInHash, generateUrlByQuery, replacePage, needRefreshPage, isSupportWebP, };
+export { setAppIdentifier, getClientInfo, isWechat, isWeibo, isMiniProgram, isWechatMP, isWechatDevtools, isClient, isiOSApp, isAndroidApp, isPC, isMobile, transferNativeFun, registerNativeFun, parseUrlAsLocation, getUrlQueryMap, getUrlQueryMapInHistory, getUrlQueryMapInHash, generateUrlByQuery, replacePage, needRefreshPage, isSupportWebP, };

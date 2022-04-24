@@ -53,10 +53,11 @@ function generateSetFromArr(arr: [], prop?: string): any[] {
 }
 
 /**
+ * fill Array with val until arr.length equal to num
  * @param val
  * @param num
  * @param array
- * fill Array with val until arr.length equal to num
+ * 
  */
 function generateFillArr(val: any, num: number, array: any[] = []): any[] {
     const _arr = array;
@@ -67,6 +68,8 @@ function generateFillArr(val: any, num: number, array: any[] = []): any[] {
     }
     return _arr
 }
+
+
 
 /**
  * determines whether the value is false or 'false'
@@ -126,6 +129,8 @@ const MoneyCapital = (n: string) => {
     }
     return str.replace(/零(千|百|拾|角)/g, "零").replace(/(零)+/g, "零").replace(/零(万|亿|元)/g, "$1").replace(/(亿)万|壹(拾)/g, "$1$2").replace(/^元零?|零分/g, "").replace(/元$/g, "元整"); // 替换掉数字里面的零字符，得到结果
 }
+
+
 
 /**
  * tests whether all elements in the array 
@@ -209,6 +214,13 @@ const filterPropsInObj = function (obj: ObjectKV, props: string[]): ObjectKV {
     return o
 }
 
+
+/**
+ * traverse object 
+ * @param obj1 target object
+ * @param func function accept elements which in object
+ * @param notDeep need deep traverse
+ */
 function traverseObj(obj1: ObjectKV, func: (o: any, i: string, _obj: ObjectKV) => {}, notDeep: boolean = false) {
     let obj = obj1 || {}
     let _obj: ObjectKV = {}
@@ -224,7 +236,6 @@ function traverseObj(obj1: ObjectKV, func: (o: any, i: string, _obj: ObjectKV) =
             }
         }
     }
-
 }
 
 export {
@@ -233,6 +244,8 @@ export {
     generateSetFromBaseTypeArr,
     generateSetFromObjectArr,
     generateSetFromArr,
+    generateFillArr,
+
 
     isTrue,
     isEmpty,

@@ -11,11 +11,18 @@ function getLocalStorage(c) {
         var storage = window.localStorage;
         var _ce = storage.getItem(ignoreUndefinedAndNull.toString());
         if (ignoreUndefinedAndNull && _ce) {
-            if (_ce[0] === '{') {
-                return JSON.parse(_ce).value;
+            try {
+                var c_1 = JSON.parse(_ce);
+                if (c_1.expired) {
+                    if (new Date().getTime() > c_1.expired) {
+                        c_1 = undefined;
+                    }
+                }
+                return c_1;
             }
-            else {
-                return _ce;
+            catch (e) {
+                deleteLocalStorage(c);
+                throw new Error('please use setLocalStorage and getLocalStorage to operate');
             }
         }
         else {
@@ -40,7 +47,7 @@ function deleteLocalStorage(c) {
     }
 }
 exports.deleteLocalStorage = deleteLocalStorage;
-function setLocalStorageBase(c, v) {
+function setLocalStorageBase(c, v, d) {
     if (!window.localStorage) {
         throw new Error("Browser don't support local storage");
     }
@@ -49,8 +56,12 @@ function setLocalStorageBase(c, v) {
         if (v !== undefined) {
             var obj = {
                 value: v,
-                type: handleData_1.getType(v)
+                type: handleData_1.getType(v),
+                expired: d && d + new Date().getTime()
             };
+            if (!d) {
+                delete obj.expired;
+            }
             var value = JSON.stringify(obj);
             storage.setItem(c.toString(), value);
             return value;
@@ -60,9 +71,9 @@ function setLocalStorageBase(c, v) {
         }
     }
 }
-function setLocalStorage(c, v) {
+function setLocalStorage(c, v, d) {
     if (typeof c === 'string') {
-        return setLocalStorageBase(c, v);
+        return setLocalStorageBase(c, v, d);
     }
     else {
         if (!window.localStorage) {
@@ -72,7 +83,7 @@ function setLocalStorage(c, v) {
             var arr = Object.entries(c);
             if (arr.length) {
                 arr.forEach(function (e) {
-                    setLocalStorageBase(e[0], e[1]);
+                    setLocalStorageBase(e[0], e[1], d);
                 });
                 return undefined;
             }

@@ -7,7 +7,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
     return r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.traverseObj = exports.filterPropsInObj = exports.selectPropsInObj = exports.isHasPassInArray = exports.isAllPassInArray = exports.MoneyCapital = exports.isEmptyArray = exports.isEmptyObject = exports.isEmpty = exports.isTrue = exports.generateSetFromArr = exports.generateSetFromObjectArr = exports.generateSetFromBaseTypeArr = exports.getType = void 0;
+exports.traverseObj = exports.filterPropsInObj = exports.selectPropsInObj = exports.isHasPassInArray = exports.isAllPassInArray = exports.MoneyCapital = exports.isEmptyArray = exports.isEmptyObject = exports.isEmpty = exports.isTrue = exports.generateFillArr = exports.generateSetFromArr = exports.generateSetFromObjectArr = exports.generateSetFromBaseTypeArr = exports.getType = void 0;
 var handleClone_1 = require("./handleClone");
 function getType(obj) {
     if (obj === null) {
@@ -55,6 +55,7 @@ function generateFillArr(val, num, array) {
     }
     return _arr;
 }
+exports.generateFillArr = generateFillArr;
 var isTrue = function (s) {
     if (s === 'false') {
         return true;

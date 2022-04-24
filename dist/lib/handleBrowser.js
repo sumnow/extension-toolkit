@@ -11,7 +11,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isSupportWebP = exports.needRefreshPage = exports.replacePage = exports.generateUrlByQuery = exports.getUrlQueryMapInHash = exports.getUrlQueryMapInHistory = exports.getUrlQueryMap = exports.parseUrlAsLocation = exports.registerNativeFun = exports.transferNativeFun = exports.isMobile = exports.isPC = exports.isAndroidApp = exports.isiOSApp = exports.isClient = exports.isWechatDevtools = exports.isWechatMP = exports.isMiniProgram = exports.isWeibo = exports.isWechat = exports.getClientInfo = void 0;
+exports.isSupportWebP = exports.needRefreshPage = exports.replacePage = exports.generateUrlByQuery = exports.getUrlQueryMapInHash = exports.getUrlQueryMapInHistory = exports.getUrlQueryMap = exports.parseUrlAsLocation = exports.registerNativeFun = exports.transferNativeFun = exports.isMobile = exports.isPC = exports.isAndroidApp = exports.isiOSApp = exports.isClient = exports.isWechatDevtools = exports.isWechatMP = exports.isMiniProgram = exports.isWeibo = exports.isWechat = exports.getClientInfo = exports.setAppIdentifier = void 0;
 var handleCookies_1 = require("./handleCookies");
 var handleLocalStorage_1 = require("./handleLocalStorage");
 function BrowserType() {
@@ -188,6 +188,8 @@ function BrowserType() {
         shellVs: shellVs
     });
 }
+var setAppIdentifier = function (str) { return handleLocalStorage_1.setLocalStorage('App_Identifier', str); };
+exports.setAppIdentifier = setAppIdentifier;
 function getClientInfo() {
     var x = 1;
     var wins = window;
@@ -208,7 +210,7 @@ function getClientInfo() {
     if (/wechatdevtools/g.test(userAgent)) {
         obj.host = 'wechatdevtools';
     }
-    if (/miniprogram/g.test(userAgent)) {
+    if ((/miniprogram/g).test(userAgent)) {
         obj.host = 'miniprogram';
     }
     if (/Win/g.test(platform)) {
