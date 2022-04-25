@@ -15,10 +15,10 @@ function getLocalStorage(c) {
                 var c_1 = JSON.parse(_ce);
                 if (c_1.expired) {
                     if (new Date().getTime() > c_1.expired) {
-                        c_1 = undefined;
+                        c_1 = deleteLocalStorage(c_1);
                     }
                 }
-                return c_1;
+                return c_1 && c_1.value;
             }
             catch (e) {
                 deleteLocalStorage(c);

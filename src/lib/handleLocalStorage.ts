@@ -29,10 +29,11 @@ function getLocalStorage(c: string | null): any {
                 let c = JSON.parse(_ce);
                 if (c.expired) {
                     if (new Date().getTime() > c.expired) {
-                        c = undefined;
+                        // delete expired data
+                        c = deleteLocalStorage(c!);
                     }
                 }
-                return c;
+                return c && c.value;
             } catch (e) {
                 deleteLocalStorage(c!);
                 throw new Error('please use setLocalStorage and getLocalStorage to operate');
